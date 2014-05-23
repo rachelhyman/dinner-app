@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Name</key>
+		<string>Espinacas con Garbanzos</string>
+		<key>Ingredients</key>
+		<array>
+			<string>Spinach</string>
+			<string>Chickpeas</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Stir Fry</string>
+		<key>Ingredients</key>
+		<array>
+			<string>Spinach</string>
+			<string>Tofu</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Salad</string>
+		<key>Ingredients</key>
+		<array>
+			<string>Spinach</string>
+			<string>Lemons</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Stir Fry</string>
+		<key>Ingredients</key>
+		<array>
+			<string>Spinach</string>
+			<string>Tofu</string>
+		</array>
+	</dict>
+</array>
+</plist>
