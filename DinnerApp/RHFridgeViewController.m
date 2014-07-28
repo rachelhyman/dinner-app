@@ -10,17 +10,22 @@
 
 @interface RHFridgeViewController ()
 
+@property (nonatomic, strong) IBOutlet UITableView *ingredientsTableView;
+
 @end
 
 @implementation RHFridgeViewController
 
+#pragma mark - Accessor methods
+
+- (id)init {
+    self = [super initWithNibName:@"RHFridgeViewController" bundle:nil];
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    return [self init];
 }
 
 - (NSMutableArray *)ingredientsArray
@@ -31,6 +36,16 @@
     return _ingredientsArray;
 }
 
+- (NSMutableArray *)recipesArray
+{
+    if (_recipesArray == nil) {
+        _recipesArray = [[NSMutableArray alloc] init];
+    }
+    return  _recipesArray;
+}
+
+#pragma mark - Setup methods 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,7 +54,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self convertIngredientsPList];
+    self.ingredientsArray = [[NSMutableArray alloc] initWithContentsOfFile:[self documentPathForPListWithName:@"Ingredients"]];
+    self.recipesArray = [[NSMutableArray alloc] initWithContentsOfFile:[self documentPathForPListWithName:@"Recipes"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,18 +64,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)convertIngredientsPList {
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"Ingredients" ofType:@"plist"];
+- (NSString *)documentPathForPListWithName:(NSString *)name {
+    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:name ofType:@"plist"];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, YES, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *documentPath = [documentsDirectory stringByAppendingPathComponent:@"Ingredients.plist"];
+    NSString *documentPath = [documentsDirectory stringByAppendingPathComponent:[name stringByAppendingString:@".plist"]];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath]) {
         [[NSFileManager defaultManager] copyItemAtPath:bundlePath toPath:documentPath error:nil];
     }
     
-    self.ingredientsArray = [[NSMutableArray alloc] initWithContentsOfFile:documentPath];
+    return documentPath;
 }
-
 
 @end

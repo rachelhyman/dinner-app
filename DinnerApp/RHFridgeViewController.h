@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RHFridgeViewController : UIViewController
+@interface RHFridgeViewController : UIViewController 
+
 @property (nonatomic, strong) NSMutableArray *ingredientsArray;
+@property (nonatomic, strong) NSMutableArray *recipesArray; 
 
 @end
